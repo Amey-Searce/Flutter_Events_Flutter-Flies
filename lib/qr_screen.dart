@@ -9,12 +9,11 @@ class QrScreen extends StatefulWidget {
   State<QrScreen> createState() => _QrScreenState();
 }
 
+
 class _QrScreenState extends State<QrScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
-      body: Center(
+    return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -41,7 +40,6 @@ class _QrScreenState extends State<QrScreen> {
             ),
             Container(
               padding: EdgeInsets.all(10),
-              margin: EdgeInsets.only(top: 150),
               child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
@@ -61,7 +59,6 @@ class _QrScreenState extends State<QrScreen> {
             )
           ],
         ),
-      ),
-    );
+      );
   }
 }

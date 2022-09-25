@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.teal,
         textTheme: Theme.of(context).textTheme.apply(
-              bodyColor: Colors.white,
+              bodyColor: Colors.blue,
             ),
       ),
     );
@@ -32,12 +32,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final tabs = [QrScreen(), ScannerScreen()];
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: QrScreen(),
+    return  const Scaffold(
+      body: MyRegister(),
     );
   }
 }
+

@@ -92,7 +92,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton(
-                            child: Text("Send Email"),
+                            child: Text('${result?.code}'),
                             onPressed: () {
                               Navigator.push(
                                   context,
