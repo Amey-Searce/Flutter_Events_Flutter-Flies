@@ -1,20 +1,43 @@
 import 'package:ecard/email_sender.dart';
-import 'package:ecard/linkedin_login.dart';
-import 'package:ecard/qr_screen.dart';
+import 'package:ecard/registration_screen.dart';
+import 'package:ecard/login_screen.dart';
 import 'package:ecard/scan_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:splashscreen/splashscreen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  final authController = true;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      home: SplashScreen(
+        image: Image.asset(
+          'assets/images/LinkUp.gif',
+          height: 400,
+          width: 400,
+          scale: 2,
+        ),
+        seconds: 2,
+        navigateAfterSeconds: FutureBuilder(
+            builder: (context, authResult) {
+                if (authResult.data == true) {
+                  return Login();
+                }
+                return MyRegister();
+              }
+
+  ),
+      ),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.teal,
@@ -32,12 +55,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   @override
   Widget build(BuildContext context) {
-    return  const Scaffold(
+    return const Scaffold(
       body: MyRegister(),
     );
   }
 }
-

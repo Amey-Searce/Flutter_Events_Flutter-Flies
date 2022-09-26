@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:ecard/email_sender.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'dart:io' as IO;
+import 'package:firebase_database/firebase_database.dart';
 
 class ScannerScreen extends StatefulWidget {
   const ScannerScreen({Key? key}) : super(key: key);
@@ -18,6 +20,35 @@ class _ScannerScreenState extends State<ScannerScreen> {
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+
+  String user_mail = '';
+  String user_name = '';
+  String user_url = '';
+  getData() async{
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
+    final uid = user?.uid;
+    final ref = FirebaseDatabase.instance.ref("users");
+    final snapshot = await ref.child('$uid/Email').get();
+    print("==========================================" + uid!);
+    if (snapshot.exists) {
+      user_mail = snapshot.value.toString();
+    } else {
+      print('No data available.');
+    }
+    final snapshot2 = await ref.child('$uid/Name').get();
+    if (snapshot2.exists) {
+      user_name = snapshot2.value.toString();
+    } else {
+      print('No data available.');
+    }
+    final snapshot3 = await ref.child('$uid/url').get();
+    if (snapshot3.exists) {
+      user_url = snapshot3.value.toString();
+    } else {
+      print('No data available.');
+    }
+  }
 
   Future sendEmail(
       {required String name,
@@ -37,11 +68,12 @@ class _ScannerScreenState extends State<ScannerScreen> {
           'template_params': {
             'receiver': email,
             'to_name': name,
-            'from_name': 'Linkedin',
+            'from_name': 'LinkUp',
             'message': message
           }
         }));
   }
+
 
   @override
   void reassemble() {
@@ -92,12 +124,9 @@ class _ScannerScreenState extends State<ScannerScreen> {
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton(
-                            child: Text('${result?.code}'),
+                            child: Text('Send Request'),
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => EmailSender()));
+                            sendEmail(name: user_name, email: user_name, subject: '$user_name wants to connect to you', message: " Click on ${user_url} to accept ${user_name}\'s request");
                             },
                             ),
                       )
