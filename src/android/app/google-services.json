@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "697456496429",
+    "project_id": "sigin-e065e",
+    "storage_bucket": "sigin-e065e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:697456496429:android:82481fe29b5f8b772bcda4",
+        "android_client_info": {
+          "package_name": "com.example.firebase_signin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "697456496429-v2vup58pfauks9fncn2g4riba21e7r6b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebase_signin",
+            "certificate_hash": "efede104fa2ffbcc4701e34c1b229a63324761e4"
+          }
+        },
+        {
+          "client_id": "697456496429-1vei2ko1sk0p808l8ma5s39fnskmmhlo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC6L5GDgftiDUfruF48Rl5tapeVl1wrr8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "697456496429-1vei2ko1sk0p808l8ma5s39fnskmmhlo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
