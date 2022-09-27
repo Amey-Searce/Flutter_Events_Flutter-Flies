@@ -66,6 +66,8 @@ Depepndecies specify other packages that your package needs for the application 
 * dev_dependencies:
 * flutter_test
 * sdk: flutter
+
+### The "flutter_lints" package below contains a set of recommended lints to encourage good coding practices. 
 * flutter_lints: ^1.0.0
 
 
@@ -75,24 +77,27 @@ Here is the core folder structure which flutter provides.
 ```
 flutter-app/
 |- android
-|- build
 |- ios
 |- lib
 |- test
+|- web
+|- windows
+
 ```
 
 Here is the folder structure we have been using in this project
 
 ```
-lib/
-|- constants/
-|- data/
-|- stores/
-|- ui/
-|- utils/
-|- widgets/
+lib
+|- reusabletextfield.dart
+|- email_sender.dart
+|- linked_login.dart
+|- linked_signup.dart
+|- login_screen.dart.dart
 |- main.dart
-|- routes.dart
+|- qr_screen.dart
+|- registration_screen.dart
+|- scan_screen.dart
 ```
 
 Now, lets dive into the lib folder which has the main code for the application.
