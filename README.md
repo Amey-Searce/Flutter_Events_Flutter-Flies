@@ -94,11 +94,9 @@ Here is the folder structure we have been using in this project
 lib
 |- ReusableTextField.dart
 |- email_sender.dart
-|- linked_login.dart
 |- linked_signup.dart
 |- login_screen.dart.dart
 |- main.dart
-|- qr_screen.dart
 |- registration_screen.dart
 |- scan_screen.dart
 ```
@@ -170,4 +168,4 @@ class _HomeState extends State<Home> {
   }
 }
 ```
-
+ Application Presentation( PPT Link) :
