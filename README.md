@@ -92,7 +92,7 @@ Here is the folder structure we have been using in this project
 
 ```
 lib
-|- reusabletextfield.dart
+|- ReusableTextField.dart
 |- email_sender.dart
 |- linked_login.dart
 |- linked_signup.dart
