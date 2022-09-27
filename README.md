@@ -36,12 +36,15 @@ flutter run
 ## App Features:
 
 * Registration
-* AutoLogin
-* Home
-* Expand My network
-* Qr code generation and Scanning
-
-
+* Login
+* Home Screen 
+  * Qr code generation
+  * Qr Scanning 
+  * Expand my network
+* LinkedIn Page
+  * Get Profile
+  * Get Access Token
+  
 ### Dependencies
 
 Depepndecies specify other packages that your package needs for the application to work.
@@ -100,47 +103,69 @@ lib
 |- scan_screen.dart
 ```
 
-Now, lets dive into the lib folder which has the main code for the application.
-
-```
-1- main.dart - This is the starting point of the application. All the application level configurations are defined in this file i.e, theme, routes, title, orientation etc.
-```
-
-
 ### Main
 
-This is the starting point of the application. All the application level configurations are defined in this file i.e, theme, routes, title, orientation etc.
+This is the starting point of the application.
 
-```dart
-import 'package:boilerplate/routes.dart';
+```
+import 'package:ecard/registration_screen.dart';
+import 'package:ecard/login_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:splashscreen/splashscreen.dart';
 
-import 'constants/app_theme.dart';
-import 'constants/strings.dart';
-import 'ui/splash/splash.dart';
-
-void main() {
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-    DeviceOrientation.landscapeRight,
-    DeviceOrientation.landscapeLeft,
-  ]).then((_) {
-    runApp(MyApp());
-  });
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  MyApp({Key? key}) : super(key: key);
+
+  final authController = true;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home: SplashScreen(
+        image: Image.asset(
+          'assets/images/LinkUp.gif',
+          height: 400,
+          width: 400,
+          scale: 2,
+        ),
+        seconds: 2,
+        navigateAfterSeconds: FutureBuilder(
+            builder: (context, authResult) {
+                if (authResult.data == true) {
+                  return MyRegister();
+                }
+                return Login();
+              }
+
+  ),
+      ),
       debugShowCheckedModeBanner: false,
-      title: Strings.appName,
-      theme: themeData,
-      routes: Routes.routes,
-      home: SplashScreen(),
+      theme: ThemeData(
+        primaryColor: Colors.teal,
+        textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: Colors.black,
+            ),
+      ),
+    );
+  }
+}
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: MyRegister(),
     );
   }
 }
