@@ -1,4 +1,4 @@
-# SVC application
+# LinkUp application
 
 
 
@@ -13,7 +13,7 @@
 Download or clone this repo by using the link below:
 
 ```
-
+git clone https://github.com/Amey-Searce/Flutter_Events_Flutter-Flies
 ```
 
 **Step 2:**
@@ -26,47 +26,52 @@ flutter pub get
 
 **Step 3:**
 
-This project uses `inject` library that works with code generation, execute the following command to generate files:
+To run the Application:
 
 ```
-flutter packages pub run build_runner build --delete-conflicting-outputs
+flutter run
 ```
 
-or watch command in order to keep the source code synced automatically:
 
-```
-flutter packages pub run build_runner watch
-```
-
-## Hide Generated Files
-
-In-order to hide generated files, navigate to `Android Studio` -> `Preferences` -> `Editor` -> `File Types` and paste the below lines under `ignore files and folders` section:
-
-```
-*.inject.summary;*.inject.dart;*.g.dart;
-```
-
-In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `Files:Exclude`. Add the following patterns:
-```
-**/*.inject.summary
-**/*.inject.dart
-**/*.g.dart
-```
-
-## Boilerplate Features:
+## App Features:
 
 * Registration
-* AutoLogin
-* Home
-* Expand My network
-* Qr code generation and Scanning
+* Login
+* Home Screen 
+  * Qr code generation
+  * Qr Scanning 
+  * Expand my network
+* LinkedIn Page
+  * Get Profile
+  * Get Access Token
+  
+### Dependencies
 
+Depepndecies specify other packages that your package needs for the application to work.
 
-### Up-Coming Features:
+* flutter:
+* sdk: flutter
+* linkedin_login: ^2.2.1
+* cupertino_icons: ^1.0.2
+* barcode_scanner: ^3.2.1
+* qr_flutter: ^4.0.0
+* path_provider: ^2.0.11
+* flutter_vector_icons: ^2.0.0
+* qr_code_scanner: ^0.7.0
+* flutter_email_sender: ^5.1.0
+* http: ^0.13.5
+* splashscreen: ^1.3.5
+* shared_preferences: ^2.0.6
+* get: ^4.1.4
+* firebase_core: ^1.10.5
+* firebase_auth: ^3.3.3
+* firebase_database: ^9.1.5
+* dev_dependencies:
+* flutter_test
+* sdk: flutter
 
-
-### Libraries & Tools Used
-
+### The "flutter_lints" package below contains a set of recommended lints to encourage good coding practices. 
+* flutter_lints: ^1.0.0
 
 
 ### Folder Structure
@@ -75,192 +80,94 @@ Here is the core folder structure which flutter provides.
 ```
 flutter-app/
 |- android
-|- build
 |- ios
 |- lib
 |- test
+|- web
+|- windows
+
 ```
 
 Here is the folder structure we have been using in this project
 
 ```
-lib/
-|- constants/
-|- data/
-|- stores/
-|- ui/
-|- utils/
-|- widgets/
+lib
+|- ReusableTextField.dart
+|- email_sender.dart
+|- linked_login.dart
+|- linked_signup.dart
+|- login_screen.dart.dart
 |- main.dart
-|- routes.dart
-```
-
-Now, lets dive into the lib folder which has the main code for the application.
-
-```
-1- constants - All the application level constants are defined in this directory with-in their respective files. This directory contains the constants for `theme`, `dimentions`, `api endpoints`, `preferences` and `strings`.
-2- data - Contains the data layer of your project, includes directories for local, network and shared pref/cache.
-3- stores - Contains store(s) for state-management of your application, to connect the reactive data of your application with the UI. 
-4- ui — Contains all the ui of your project, contains sub directory for each screen.
-5- util — Contains the utilities/common functions of your application.
-6- widgets — Contains the common widgets for your applications. For example, Button, TextField etc.
-7- routes.dart — This file contains all the routes for your application.
-8- main.dart - This is the starting point of the application. All the application level configurations are defined in this file i.e, theme, routes, title, orientation etc.
-```
-
-### Constants
-
-This directory contains all the application level constants. A separate file is created for each type as shown in example below:
-
-```
-constants/
-|- app_theme.dart
-|- dimens.dart
-|- endpoints.dart
-|- preferences.dart
-|- strings.dart
-```
-
-### Data
-
-All the business logic of your application will go into this directory, it represents the data layer of your application. It is sub-divided into three directories `local`, `network` and `sharedperf`, each containing the domain specific logic. Since each layer exists independently, that makes it easier to unit test. The communication between UI and data layer is handled by using central repository.
-
-```
-data/
-|- local/
-    |- constants/
-    |- datasources/
-    |- app_database.dart
-   
-|- network/
-    |- constants/
-    |- exceptions/
-    |- rest_client.dart
-    
-|- sharedpref
-    |- constants/
-    |- shared_preference_helper.dart
-    
-|- repository.dart
-
-```
-
-### Stores
-
-The store is where all your application state lives in flutter. The Store is basically a widget that stands at the top of the widget tree and passes it's data down using special methods. In-case of multiple stores, a separate folder for each store is created as shown in the example below:
-
-```
-stores/
-|- login/
-    |- login_store.dart
-    |- form_validator.dart
-```
-
-### UI
-
-This directory contains all the ui of your application. Each screen is located in a separate folder making it easy to combine group of files related to that particular screen. All the screen specific widgets will be placed in `widgets` directory as shown in the example below:
-
-```
-ui/
-|- login
-   |- login_screen.dart
-   |- widgets
-      |- login_form.dart
-      |- login_button.dart
-```
-
-### Utils
-
-Contains the common file(s) and utilities used in a project. The folder structure is as follows: 
-
-```
-utils/
-|- encryption
-   |- xxtea.dart
-|- date
-  |- date_time.dart
-```
-
-### Widgets
-
-Contains the common widgets that are shared across multiple screens. For example, Button, TextField etc.
-
-```
-widgets/
-|- app_icon_widget.dart
-|- empty_app_bar.dart
-|- progress_indicator.dart
-```
-
-### Routes
-
-This file contains all the routes for your application.
-
-```dart
-import 'package:flutter/material.dart';
-
-import 'ui/home/home.dart';
-import 'ui/login/login.dart';
-import 'ui/splash/splash.dart';
-
-class Routes {
-  Routes._();
-
-  //static variables
-  static const String splash = '/splash';
-  static const String login = '/login';
-  static const String home = '/home';
-
-  static final routes = <String, WidgetBuilder>{
-    splash: (BuildContext context) => SplashScreen(),
-    login: (BuildContext context) => LoginScreen(),
-    home: (BuildContext context) => HomeScreen(),
-  };
-}
+|- qr_screen.dart
+|- registration_screen.dart
+|- scan_screen.dart
 ```
 
 ### Main
 
-This is the starting point of the application. All the application level configurations are defined in this file i.e, theme, routes, title, orientation etc.
+This is the starting point of the application.
 
-```dart
-import 'package:boilerplate/routes.dart';
+```
+import 'package:ecard/registration_screen.dart';
+import 'package:ecard/login_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:splashscreen/splashscreen.dart';
 
-import 'constants/app_theme.dart';
-import 'constants/strings.dart';
-import 'ui/splash/splash.dart';
-
-void main() {
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-    DeviceOrientation.landscapeRight,
-    DeviceOrientation.landscapeLeft,
-  ]).then((_) {
-    runApp(MyApp());
-  });
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  MyApp({Key? key}) : super(key: key);
+
+  final authController = true;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home: SplashScreen(
+        image: Image.asset(
+          'assets/images/LinkUp.gif',
+          height: 400,
+          width: 400,
+          scale: 2,
+        ),
+        seconds: 2,
+        navigateAfterSeconds: FutureBuilder(
+            builder: (context, authResult) {
+                if (authResult.data == true) {
+                  return MyRegister();
+                }
+                return Login();
+              }
+
+  ),
+      ),
       debugShowCheckedModeBanner: false,
-      title: Strings.appName,
-      theme: themeData,
-      routes: Routes.routes,
-      home: SplashScreen(),
+      theme: ThemeData(
+        primaryColor: Colors.teal,
+        textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: Colors.black,
+            ),
+      ),
+    );
+  }
+}
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: MyRegister(),
     );
   }
 }
 ```
-
-## Conclusion
-
-I will be happy to answer any questions that you may have on this approach, and if you want to lend a hand with the boilerplate then please feel free to submit an issue and/or pull request 🙂
-
-Again to note, this is example can appear as over-architectured for what it is - but it is an example only. If you liked my work, don’t forget to ⭐ star the repo to show your support.
 
