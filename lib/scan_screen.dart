@@ -109,7 +109,9 @@ class _ScannerScreenState extends State<ScannerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Text("Scan QR"),
       ),
       body: Column(
@@ -132,20 +134,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                   Row(
                     children: <Widget>[
                       Container(
-                        margin: const EdgeInsets.all(8),
-                        child: TextButton(
-                            onPressed: () {
-                              setState(() {
-                                flash = !flash;
-                              });
-                            },
-                            child: Icon(
-                              flash ? Icons.flash_on : Icons.flash_off,
-                              color: flash ? Colors.blue : Colors.grey,
-                            )),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.all(8),
+                        margin: const EdgeInsets.all(10),
                         child: ElevatedButton(
                           child: Text('Send Request'),
                           onPressed: () {
@@ -155,7 +144,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
                                 subject: '$user_name wants to connect to you',
                                 link: user_url,
                                 message:
-                                    " Click on url below to accept $user_name's request");
+                                    " Click on link below to accept $user_name's request");
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
                               content: Text("Request sent by email !!"),

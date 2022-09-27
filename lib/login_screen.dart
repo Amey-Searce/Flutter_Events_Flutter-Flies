@@ -37,9 +37,20 @@ class _MyLoginState extends State<Login> {
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+                20, 100, 20, 0),
             child: Column(
               children: <Widget>[
+                Row(
+
+                  children: <Widget>[
+                    Image.asset('assets/images/LinkUp.png',height: 150,width:150,),
+
+                    const Text("Login ",
+                      style: TextStyle(fontSize: 35, color: Colors.white),),
+
+                  ],
+                ),
+
                 const SizedBox(
                   height: 30,
                 ),
@@ -54,7 +65,9 @@ class _MyLoginState extends State<Login> {
                   height: 30,
                 ),
 
-                firebaseUIButton(context, "Sign In", () {
+        Container(
+            padding: EdgeInsets.symmetric(horizontal: 100),
+               child: firebaseUIButton(context, "Sign In", () {
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(
                       email: _emailTextController.text,
@@ -65,7 +78,7 @@ class _MyLoginState extends State<Login> {
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
                   });
-                }),
+                }),),
                 const SizedBox(
                   height: 20,
                 ),

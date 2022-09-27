@@ -55,12 +55,14 @@ class _MyRegisterState extends State<MyRegister> {
 
             child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(20, 180, 20, 0),
+                  padding: EdgeInsets.fromLTRB(20, 100, 20, 0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      const Text("SIGN UP",
-                        style: TextStyle(fontSize: 35, color: Colors.white),),
+                      Image.asset('assets/images/LinkUp.png',height: 150,width:150,),
+
+                      const Text("Create new account",
+                            style: TextStyle(fontSize: 25, color: Colors.white),),
+
                       const SizedBox(
                         height: 40,
                       ),
@@ -88,6 +90,9 @@ class _MyRegisterState extends State<MyRegister> {
                       const SizedBox(
                         height: 20,
                       ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 100),
+                    child:
                       firebaseUIButton(context, "Sign Up", () {
                         FirebaseAuth.instance
                             .createUserWithEmailAndPassword(
@@ -103,7 +108,7 @@ class _MyRegisterState extends State<MyRegister> {
                         });
                         writeData(_emailTextController.text,_userNameTextController.text,_urlTextController.text);
 
-                      }),
+                      }),),
 
                       TextButton(
                         onPressed: () {
@@ -115,7 +120,7 @@ class _MyRegisterState extends State<MyRegister> {
                           );
                         },
                         child: const Text(
-                          'Or Login',
+                          'Already signed up ? Login here',
                           textAlign: TextAlign.left,
                           style: TextStyle(
                               decoration: TextDecoration.underline,

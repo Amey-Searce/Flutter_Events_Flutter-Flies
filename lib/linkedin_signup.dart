@@ -70,6 +70,10 @@ class _LinkedInProfileExamplePageState
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+      ),
+      backgroundColor: Colors.black,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
@@ -95,13 +99,17 @@ class _LinkedInProfileExamplePageState
                           child: Text('${user?.firstName} ${user?.lastName}',
                               style: const TextStyle(
                                 fontSize: 20.0,
+                                color: Colors.white
                               )),
                         )
                       ],
                     ),
                   ),
                 )
-              : const SizedBox.shrink(),
+              :  Container(
+            padding: const EdgeInsets.symmetric(vertical: 100),
+            child: Image.asset('assets/images/LinkUp.png'),
+          ),
           user?.email != null
               ? Column(
                   children: <Widget>[
@@ -121,7 +129,7 @@ class _LinkedInProfileExamplePageState
                     textPadding: EdgeInsets.all(10),
                     iconHeight: 40.5,
                     iconWeight: 40,
-                    buttonText: "Get Profile",
+                    buttonText: "Generate QR",
                     onTap: () {
                       Navigator.push(
                         context,
@@ -195,6 +203,7 @@ class _LinkedInProfileExamplePageState
                         MaterialPageRoute<void>(
                           builder: (final BuildContext context) =>
                               LinkedInAuthCodeWidget(
+
                             destroySession: logoutUser,
                             redirectUrl: redirectUrl,
                             clientId: clientId,
@@ -245,6 +254,7 @@ class _LinkedInProfileExamplePageState
           ),
           user?.email != null
               ? ElevatedButton(
+
                   onPressed: () {
                     Navigator.push(
                         context,
@@ -252,10 +262,10 @@ class _LinkedInProfileExamplePageState
                             builder: (context) => ScannerScreen()));
                   },
                   style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.fromLTRB(100, 30, 100, 20),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20), // <-- Radius
-                      )),
+                    onPrimary: Colors.black,
+                      primary: Colors.white,
+                      padding: const EdgeInsets.fromLTRB(100,15, 100, 15),
+                    ),
                   child: const Text(
                     "Expand My Network",
                     style: TextStyle(fontSize: 22),
