@@ -13,7 +13,7 @@
 Download or clone this repo by using the link below:
 
 ```
-
+git clone https://github.com/Amey-Searce/Flutter_Events_Flutter-Flies
 ```
 
 **Step 2:**
