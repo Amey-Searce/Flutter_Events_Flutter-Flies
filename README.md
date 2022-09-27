@@ -44,6 +44,43 @@ flutter run
 
 ### Libraries & Tools Used
 
+flutter:
+    sdk: flutter
+  linkedin_login: ^2.2.1
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+  barcode_scanner: ^3.2.1
+  qr_flutter: ^4.0.0
+  path_provider: ^2.0.11
+  flutter_vector_icons: ^2.0.0
+  qr_code_scanner: ^0.7.0
+  flutter_email_sender: ^5.1.0
+  http: ^0.13.5
+  splashscreen: ^1.3.5
+  shared_preferences: ^2.0.6
+  get: ^4.1.4
+  firebase_core: ^1.10.5
+  firebase_auth: ^3.3.3
+  firebase_database: ^9.1.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^1.0.0
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
 
 
 
