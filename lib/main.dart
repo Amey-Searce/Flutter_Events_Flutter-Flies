@@ -2,6 +2,7 @@ import 'package:ecard/email_sender.dart';
 import 'package:ecard/registration_screen.dart';
 import 'package:ecard/login_screen.dart';
 import 'package:ecard/scan_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
@@ -16,7 +17,6 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
 
   final authController = true;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
         navigateAfterSeconds: FutureBuilder(
             builder: (context, authResult) {
                 if (authResult.data == true) {
-                  return Login();
+                  return MyRegister();
                 }
-                return MyRegister();
+                return Login();
               }
 
   ),
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.teal,
         textTheme: Theme.of(context).textTheme.apply(
-              bodyColor: Colors.blue,
+              bodyColor: Colors.black,
             ),
       ),
     );

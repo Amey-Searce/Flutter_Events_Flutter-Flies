@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:ecard/email_sender.dart';
+import 'package:ecard/linkedin_signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
@@ -24,7 +25,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
   String user_mail = '';
   String user_name = '';
   String user_url = '';
-  getData() async{
+
+  getData() async {
     final FirebaseAuth auth = FirebaseAuth.instance;
     User? user = auth.currentUser;
     final uid = user?.uid;
@@ -32,29 +34,48 @@ class _ScannerScreenState extends State<ScannerScreen> {
     final snapshot = await ref.child('$uid/Email').get();
     print("==========================================" + uid!);
     if (snapshot.exists) {
-      user_mail = snapshot.value.toString();
+      setState(() {
+        user_mail = snapshot.value.toString();
+      });
+      print("==============================================" + user_mail);
     } else {
       print('No data available.');
     }
     final snapshot2 = await ref.child('$uid/Name').get();
     if (snapshot2.exists) {
-      user_name = snapshot2.value.toString();
+      setState(() {
+        user_name = snapshot2.value.toString();
+      });
+      print("==============================================" + user_name);
+
     } else {
-      print('No data available.');
+      print('No url available.');
     }
-    final snapshot3 = await ref.child('$uid/url').get();
+    final snapshot3 = await ref.child('$uid/Url').get();
     if (snapshot3.exists) {
-      user_url = snapshot3.value.toString();
+      setState(() {
+        user_url = snapshot3.value.toString();
+      });
+      print("==============================================" + user_url);
+
     } else {
-      print('No data available.');
+      print('No url available.');
     }
   }
 
+  @override
+  initState() {
+    super.initState();
+    getData();
+  }
+
+
   Future sendEmail(
       {required String name,
-        required String email,
-        required String subject,
-        required String message}) async {
+      required String email,
+      required String subject,
+        required String link,
+      required String message}) async {
     final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
     await http.post(url,
         headers: {
@@ -69,11 +90,11 @@ class _ScannerScreenState extends State<ScannerScreen> {
             'receiver': email,
             'to_name': name,
             'from_name': 'LinkUp',
-            'message': message
+            'message': message,
+            'link':link
           }
         }));
   }
-
 
   @override
   void reassemble() {
@@ -102,8 +123,10 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   if (result != null)
-                    Text(
-                        'Data: ${result!.code}')
+                    const Text(
+                      'User Found !',
+                      style: TextStyle(color: Colors.blue),
+                    )
                   else
                     const Text(''),
                   Row(
@@ -124,11 +147,24 @@ class _ScannerScreenState extends State<ScannerScreen> {
                       Container(
                         margin: const EdgeInsets.all(8),
                         child: ElevatedButton(
-                            child: Text('Send Request'),
-                            onPressed: () {
-                            sendEmail(name: user_name, email: user_name, subject: '$user_name wants to connect to you', message: " Click on ${user_url} to accept ${user_name}\'s request");
-                            },
-                            ),
+                          child: Text('Send Request'),
+                          onPressed: () {
+                            sendEmail(
+                                name: user_name,
+                                email: result!.code.toString(),
+                                subject: '$user_name wants to connect to you',
+                                link: user_url,
+                                message:
+                                    " Click on url below to accept $user_name's request");
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text("Request sent by email !!"),
+                            ));
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => LinkedInProfileExamplePage()));
+
+                          },
+                        ),
                       )
                     ],
                   ),

@@ -1,4 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+Future<bool> getData() async{
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  User? user = auth.currentUser;
+  if(user!= null) {
+    return true;
+  }else {
+    return false;
+  }
+}
 
 Image logoWidget(String imageName) {
   return Image.asset(

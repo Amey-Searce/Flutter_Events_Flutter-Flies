@@ -26,7 +26,7 @@ class _MyRegisterState extends State<MyRegister> {
     ref.child(uid!).set({
       'Name': name,
       'Email': email,
-      'url ': url
+      'Url ': url
     });
   }
 
@@ -130,22 +130,5 @@ class _MyRegisterState extends State<MyRegister> {
 
       ),
     );
-  }
-
-
-  void createData() {
-    databaseReference.child("flutterDevsTeam1").set({
-      'name': 'Deepak Nishad',
-      'description': 'Team Lead'
-    });
-    databaseReference.child("flutterDevsTeam2").set({
-      'name': 'Yashwant Kumar',
-      'description': 'Senior Software Engineer'
-    });
-    databaseReference.child("flutterDevsTeam3").set({
-      'name': 'Akshay',
-      'description': 'Software Engineer'
-    });
-
   }
   }
