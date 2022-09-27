@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "746210612122",
+    "project_id": "linkup-4f403",
+    "storage_bucket": "linkup-4f403.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746210612122:android:0cdd49ca1ca8d0e7b7a023",
+        "android_client_info": {
+          "package_name": "com.example.ecard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746210612122-82akofa6jjpnmukv93d75cdjdth0ligi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJrSdILcghe79L4WbNeyIoaL2e7w0w2Uk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "746210612122-82akofa6jjpnmukv93d75cdjdth0ligi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
