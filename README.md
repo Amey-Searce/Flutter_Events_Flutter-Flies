@@ -26,7 +26,7 @@ flutter pub get
 
 **Step 3:**
 
-To run the files:
+To run the Application:
 
 ```
 flutter run
