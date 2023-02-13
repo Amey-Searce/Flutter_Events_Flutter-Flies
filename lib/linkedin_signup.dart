@@ -8,9 +8,9 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-const String redirectUrl = 'https://httpbin.org/';
-const String clientId = '78wn08td41odqy';
-const String clientSecret = 'OWzUId85qYnXyHID';
+const String redirectUrl = process.env.redirectUrl;
+const String clientId = process.env.clientId;
+const String clientSecret = process.env.clientSecret;
 
 class LinkedInProfileExamplePage extends StatefulWidget {
   const LinkedInProfileExamplePage({Key? key}) : super(key: key);
